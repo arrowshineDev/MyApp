@@ -1,0 +1,126 @@
+﻿@model IEnumerable<MyApp.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Products Index</h4>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for product name.." title="Type in a name">
+            <iframe id="txtArea1" style="display:none"></iframe>
+
+
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <button data-toggle="dropdown" class="btn-lg btn-primary dropdown-toggle" type="button" aria-expanded="true" style="padding: 0.58rem 2.6rem;">Actions</button>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a href="@Url.Action("Create", "Products")" class="dropdown-item">Add Product</a>
+            <button class="dropdown-item" id="btnExport" onclick="fnExcelReport();">Export Table</button>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Product Index</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered verticle-middle table-responsive-sm" id="product_table">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(model => model.ProductName)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.Category.Title)</th>
+                            <th scope="col"> @Html.DisplayNameFor(model => model.ProductPrice)</th>
+                  
+                            <th scope="col"> @Html.DisplayNameFor(model => model.ProductImage)</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @Html.DisplayFor(modelItem => item.ProductName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Category.Title)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ProductPrice)</td>
+                                <td><img src="@Html.DisplayFor(modelItem => item.ProductImage)" alt="Alternate Text" style="width:40px;height:40px;" /></td>
+                                <td>
+
+                                    @Html.ActionLink("Details", "Details", new { id = item.ProductID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ProductID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function fnExcelReport() {
+        var tab_text = "<table border='2px'><tr bgcolor='#87AFC6'>";
+        var textRange; var j = 0;
+        tab = document.getElementById('product_table'); // id of table
+
+        for (j = 0; j < tab.rows.length; j++) {
+            tab_text = tab_text + tab.rows[j].innerHTML + "</tr>";
+            //tab_text=tab_text+"</tr>";
+        }
+
+        tab_text = tab_text + "</table>";
+        tab_text = tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+        tab_text = tab_text.replace(/<img[^>]*>/gi, ""); // remove if u want images in your table
+        tab_text = tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+        var ua = window.navigator.userAgent;
+        var msie = ua.indexOf("MSIE ");
+
+        if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+        {
+            txtArea1.document.open("txt/html", "replace");
+            txtArea1.document.write(tab_text);
+            txtArea1.document.close();
+            txtArea1.focus();
+            sa = txtArea1.document.execCommand("SaveAs", true, "Say Thanks to Sumit.xls");
+        }
+        else                 //other browser not tested on IE 11
+            sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+        return (sa);
+
+    }
+
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("product_table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

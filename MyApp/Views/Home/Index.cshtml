@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MyApp.Models.Product>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+
+<!-- Banner Starts Here -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="caption">
+                    <h2>My Project</h2>
+                    <div class="line-dec"></div>
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    </p>
+                    <div class="main-button">
+                        <a href="#">Visit Shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Ends Here -->
+<!-- Featured Starts Here -->
+<div class="featured-items">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1>Featured Items</h1>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="owl-carousel owl-theme">
+
+                    @foreach (var item in Model)
+                    {
+                        <a href="@Url.Action("SingleProduct", "Home", new { id = item.ProductID })">
+                            <div class="featured-item">
+                                <img src="@Html.DisplayFor(modelItem => item.ProductImage)" alt="Item 1">
+                                <h4>@Html.DisplayFor(modelItem => item.ProductName)</h4>
+                                <h6>@Html.DisplayFor(modelItem => item.ProductPrice)</h6>
+                            </div>
+                        </a>
+                    }
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="logo">
+                    <img src="~/Content/assets/images/logo.png" alt="">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="footer-menu">
+                    <ul>
+                        <li>
+                            @Html.ActionLink("Home", "Index", "Home")
+                        </li>
+                        <li>
+                            <a class="nav-link" href="#">Shop</a>
+                        </li>
+                        <li>
+                            @Html.ActionLink("About", "About", "Home")
+                        </li>
+                        <li>
+                            @Html.ActionLink("Contact", "Contact", "Home")
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- Footer Ends Here -->

@@ -1,0 +1,50 @@
+﻿@model MyApp.Models.Order
+
+@{
+    ViewBag.Title = "CheckOut";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="contact-page">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1>CheckOut</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+                <ul>
+                </ul>
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="right-content">
+                    <div class="container">
+                        @using (Html.BeginForm("AddOrder", "Home", new { @productId = @Html.DisplayFor(model => model.ID) }, FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <div class="form-horizontal">
+                                <h4>Order</h4>
+                                <hr />
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Order" class="btn btn-default" />
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

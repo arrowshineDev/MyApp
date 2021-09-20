@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Project</title>
+
+    @Styles.Render("~/Content/vendor/bootstrap/css/bootstrap.min.css")
+    @Styles.Render("~/Content/assets/css/fontawesome.css")
+    @Styles.Render("~/Content/assets/css/tooplate-main.css")
+    @Styles.Render("~/Content/assets/css/owl.css")
+
+</head>
+<body>
+    <!-- Pre Header -->
+    <div id="pre-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <span>Free Shipping</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="~/Content/assets/images/logo.png" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a href="@Url.Action("Index", "Home")" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Shop", "Home")" class="nav-link">Shop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("About", "Home")" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Contact", "Home")" class="nav-link">Contact</a>
+
+                    </li>
+
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    <!-- Sub Footer Starts Here -->
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright-text">
+                        <p>
+                            Copyright &copy; 2021 Softechers
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Sub Footer Ends Here -->
+
+
+
+
+
+
+    @Scripts.Render("~/Content/vendor/jquery/jquery.min.js")
+    @Scripts.Render("~/Content/vendor/bootstrap/js/bootstrap.bundle.min.js")
+    @Scripts.Render("~/Content/assets/js/custom.js")
+    @Scripts.Render("~/Content/assets/js/owl.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

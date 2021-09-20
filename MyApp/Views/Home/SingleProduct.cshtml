@@ -1,0 +1,52 @@
+﻿@model MyApp.Models.Product
+@{
+    ViewBag.Title = "SingleProdect";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="single-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-heading">
+                    <div class="line-dec"></div>
+                    <h1> @Html.DisplayFor(model => model.ProductName)</h1>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="product-slider">
+                    <div id="slider" class="flexslider">
+                        <ul class="slides">
+                            <li>
+                                <img src="@Html.DisplayFor(model => model.ProductImage)" />
+                            </li>
+                            <!-- items mirrored twice, total of 12 -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="right-content">
+                    <h4>@Html.DisplayFor(model => model.ProductName)</h4>
+                    <h6>@Html.DisplayFor(model => model.ProductPrice)</h6>
+                    <p>Proin commodo, diam a ultricies sagittis, erat odio rhoncus metus, eu feugiat lorem lacus aliquet arcu. Curabitur in gravida nisi, non placerat nibh. Praesent sit amet diam ultrices, commodo turpis id, dignissim leo. Suspendisse mauris massa, porttitor non fermentum vel, ullamcorper scelerisque velit. </p>
+                    <span>7 left on stock</span>
+                    <form action="" method="get">
+                        <label for="quantity">Quantity:</label>
+                        <input name="quantity" type="quantity" class="quantity-text" id="quantity"
+                               onfocus="if(this.value == '1') { this.value = ''; }"
+                               onBlur="if(this.value == '') { this.value = '1';}"
+                               value="1">
+                        <a href="@Url.Action("Create", "Orders", new { id = Model.ProductID })" class="button">Order Now</a>
+                    </form>
+                    <div class="down-content">
+                        <div class="categories">
+                            <h6>Category: <span>@Html.DisplayFor(model => model.Category.Title)</span></h6>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

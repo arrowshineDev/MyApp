@@ -1,0 +1,43 @@
+﻿@model MyApp.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProducId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProducId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Quantity)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

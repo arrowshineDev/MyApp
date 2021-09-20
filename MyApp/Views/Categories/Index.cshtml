@@ -1,0 +1,89 @@
+﻿@model IEnumerable<MyApp.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Admin/_Layout.cshtml";
+}
+
+<div class="row page-titles mx-0">
+    <div class="col-sm-6 p-md-0">
+        <div class="welcome-text">
+            <h4>Categories Index</h4>
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <input class="form-control" type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for product name.." title="Type in a name">
+
+            <iframe id="txtArea1" style="display:none"></iframe>
+
+
+        </div>
+    </div>
+    <div class="col-sm-6 p-md-0 justify-content-sm-end mt-2 mt-sm-0 d-flex">
+        <button data-toggle="dropdown" class="btn-lg btn-primary dropdown-toggle" type="button" aria-expanded="true" style="padding: 0.58rem 2.6rem;">Actions</button>
+        <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 35px, 0px); top: 0px; left: 0px; will-change: transform;">
+            <a href="@Url.Action("Create", "Categories")" class="dropdown-item">Add Product</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h4 class="card-title">Categories Index</h4>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered verticle-middle table-responsive-sm" id="categories_table">
+                    <thead>
+                        <tr>
+                            <th scope="col">@Html.DisplayNameFor(model => model.ID)</th>
+                            <th scope="col">@Html.DisplayNameFor(model => model.Title)</th>
+
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.ID)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Title)</td>
+
+                                <td>
+
+                                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+
+    function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("categories_table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Project</title>
+
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @Styles.Render("~/Content/admin/images/favicon.png")
+    @Styles.Render("~/Content/admin/css/style.css")
+
+
+
+
+</head>
+<body>
+    <!--*******************
+        Preloader start
+    ********************-->
+    <div id="preloader">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--*******************
+        Preloader end
+    ********************-->
+    <!--**********************************
+        Main wrapper start
+    ***********************************-->
+    <div id="main-wrapper">
+
+        <div class="nav-header">
+            <a href="@Url.Action("Index", "Admin")" class="brand-logo">
+                <img style=" max-width: 150px; " class="brand-title" src="~/Content/admin/images/admin_logo.png" alt="">
+            </a>
+
+            <div class="nav-control">
+                <div class="hamburger">
+                    <span class="line"></span><span class="line"></span><span class="line"></span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="header">
+            <div class="header-content">
+                <nav class="navbar navbar-expand">
+                    <div class="collapse navbar-collapse justify-content-between">
+                        <div class="header-left">
+                        </div>
+
+                        <ul class="navbar-nav header-right">
+
+                            <li class="nav-item dropdown header-profile">
+                                <a class="nav-link" href="#" role="button" data-toggle="dropdown">
+                                    <i class="fas fa-user"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="javascript:document.getElementById('logoutForm').submit()" class="dropdown-item">
+                                        <i class="icon-key"></i>
+                                        <span class="ml-2">Logout </span>
+                                    </a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+
+
+        <div class="quixnav">
+            <div class="quixnav-scroll">
+                <ul class="metismenu" id="menu">
+                    <li class="nav-label first">Dashboard</li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon icon-single-04"></i><span class="nav-text">Products</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="@Url.Action("Create", "Products")">Add Product</a></li>
+                            <li><a href="@Url.Action("Index", "Products")">Product Index</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon icon-single-04"></i><span class="nav-text">Catrgory</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="@Url.Action("Index", "Categories")">Categories Index</a></li>
+                            <li><a href="@Url.Action("Create", "Categories")">Add New Category</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon icon-single-04"></i><span class="nav-text">Orders</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="@Url.Action("Index", "Orders")">Orders Index</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:void()" aria-expanded="false">
+                            <i class="icon icon-single-04"></i><span class="nav-text">Users</span>
+                        </a>
+                        <ul aria-expanded="false">
+                            <li><a href="@Url.Action("Index", "Users")">User Index</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+
+
+
+        <div class="content-body">
+
+            @RenderBody()
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    @Scripts.Render("~/Content/admin/vendor/global/global.min.js")
+    @Scripts.Render("~/Content/admin/js/quixnav-init.js")
+    @Scripts.Render("~/Content/admin/js/custom.min.js")
+    @Scripts.Render("~/Content/admin/vendor/jqvmap/js/jquery.vmap.min.js")
+    @Scripts.Render("~/Content/admin/vendor/jqvmap/js/jquery.vmap.usa.js")
+    @Scripts.Render("~/Content/admin/vendor/jquery.counterup/jquery.counterup.min.js")
+    @Scripts.Render("~/Content/admin/js/dashboard/dashboard-1.js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
